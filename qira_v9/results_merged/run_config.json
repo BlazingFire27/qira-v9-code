@@ -1,0 +1,147 @@
+{
+ "protocol": "QIRA-v8-transport",
+ "timestamp": "2026-10-06T06:23:43.442015",
+ "model": "Qwen/Qwen2.5-7B-Instruct",
+ "preset": "quick",
+ "calib_source": "natural",
+ "decision_layer": 14,
+ "num_layers": 28,
+ "chat_template": true,
+ "max_context": 4096,
+ "dtype": "bfloat16",
+ "device": "cuda",
+ "torch": "2.11.0+cu128",
+ "code_version": "9.0",
+ "attn_backend": "flex",
+ "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+ "qira_config": {
+  "decision_layer_fraction": 0.5,
+  "protect_prefix": 16,
+  "protect_suffix": 16,
+  "window_w": 16,
+  "projection_dim": 8,
+  "projection_seed": 1234,
+  "qei_weights": [
+   0.35,
+   0.25,
+   0.2,
+   0.2
+  ],
+  "spectral_mode": "lite",
+  "power_iterations": 1,
+  "cheap_gate_enabled": true,
+  "cheap_cosine_threshold": 0.998,
+  "cheap_norm_delta_threshold": 0.02,
+  "hysteresis_band": 0.05,
+  "ridge_alphas": [
+   0.0001,
+   0.001,
+   0.01,
+   0.03,
+   0.1,
+   0.3,
+   1.0,
+   10.0
+  ],
+  "val_every": 5,
+  "mlp_hidden": 512,
+  "mlp_steps": 400,
+  "mlp_max_tokens": 32768,
+  "mlp_lr": 0.001,
+  "attn_query_chunk": 4096
+ },
+ "preset_config": {
+  "name": "quick",
+  "samples": {
+   "longbench": 8,
+   "squad": 10,
+   "mmlu": 20,
+   "gsm8k": 5,
+   "humaneval": 5
+  },
+  "idbench_eval_per_density": 2,
+  "max_context": 4096,
+  "main_budgets": [
+   0.3,
+   0.5,
+   0.7,
+   0.9
+  ],
+  "transport_budgets": [
+   0.3,
+   0.6,
+   0.9
+  ],
+  "selector_budgets": [
+   0.5,
+   0.8
+  ],
+  "transfer_budgets": [
+   0.5,
+   0.8
+  ],
+  "operating_points": {
+   "Conservative": 0.3,
+   "Balanced": 0.5,
+   "Aggressive": 0.7
+  },
+  "transport_tasks": [
+   "idbench",
+   "squad",
+   "longbench"
+  ],
+  "selector_tasks": [
+   "idbench",
+   "squad",
+   "longbench"
+  ],
+  "transfer_tasks": [
+   "idbench",
+   "squad",
+   "longbench"
+  ],
+  "scaling_lengths": [
+   2048,
+   4096,
+   8192
+  ],
+  "scaling_samples": 1,
+  "scaling_budgets": [
+   0.5,
+   0.8
+  ],
+  "timing_repeats": 3,
+  "calib_prompts": {
+   "natural": 16,
+   "idbench": 20,
+   "code": 8
+  },
+  "calib_max_tokens": 2048,
+  "latency_samples": 8
+ },
+ "experiments": [
+  "selftest",
+  "calibrate",
+  "main",
+  "transport",
+  "selector",
+  "calib_transfer",
+  "operating",
+  "latency",
+  "scaling",
+  "report"
+ ],
+ "argv": [
+  "run_benchmark.py",
+  "--model",
+  "Qwen/Qwen2.5-7B-Instruct",
+  "--dtype",
+  "bfloat16",
+  "--dense-only",
+  "--longbench-all",
+  "--tasks",
+  "longbench",
+  "--output-dir",
+  "results"
+ ]
+}

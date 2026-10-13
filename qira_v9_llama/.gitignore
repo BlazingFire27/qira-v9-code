@@ -1,0 +1,30 @@
+# Results and checkpoints
+results/
+results*/
+longbench_cache/
+*.pt
+*.bin
+*.safetensors
+
+# Logs
+logs/
+*.log
+
+# Python cache & environments
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+
+# Security: Never expose tokens, keys, or credentials
+.env*
+*.key
+*.pem
+
+# Archives
+*.tar.gz
+*.zip
+*.rar
+
+main.jsonl

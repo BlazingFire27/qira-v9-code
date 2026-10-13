@@ -1,0 +1,33 @@
+{
+ "passed": true,
+ "checks": [
+  {
+   "sample": "idb_calibration_capital_0_0",
+   "n": 192,
+   "engine_vs_hf_kl": 0.0,
+   "engine_vs_hf_top1": true,
+   "decode_prefix_match_of_16": 4,
+   "nll_engine": 4.2437604861333966e-05,
+   "nll_hf": 4.434487345861271e-05,
+   "oracle_kl": -1.8035342316813363e-11,
+   "oracle_halted": 80,
+   "kl_stale@0.5": 0.019887469708919525,
+   "kl_drop@0.5": 0.5759838819503784,
+   "kl_reproject@0.5": 0.00020639636204577982
+  },
+  {
+   "sample": "cal_natural_musique_0",
+   "n": 1024,
+   "engine_vs_hf_kl": 0.0,
+   "engine_vs_hf_top1": true,
+   "decode_prefix_match_of_16": 13,
+   "nll_engine": 4.346147716834094,
+   "nll_hf": 4.303718566894531,
+   "oracle_kl": 0.0031731016933918,
+   "oracle_halted": 496,
+   "kl_stale@0.5": 4.234057426452637,
+   "kl_drop@0.5": 0.45700305700302124,
+   "kl_reproject@0.5": 1.0911321640014648
+  }
+ ]
+}

@@ -1,0 +1,164 @@
+{
+ "protocol": "QIRA-v8-transport",
+ "timestamp": "2026-10-07T12:19:48.653595",
+ "model": "Qwen/Qwen2.5-7B-Instruct",
+ "preset": "paper",
+ "calib_source": "natural",
+ "decision_layer": 14,
+ "num_layers": 28,
+ "chat_template": true,
+ "max_context": 8192,
+ "dtype": "bfloat16",
+ "device": "cuda",
+ "torch": "2.11.0+cu128",
+ "code_version": "9.0",
+ "attn_backend": "flex",
+ "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+ "qira_config": {
+  "decision_layer_fraction": 0.5,
+  "protect_prefix": 16,
+  "protect_suffix": 16,
+  "window_w": 16,
+  "projection_dim": 8,
+  "projection_seed": 1234,
+  "qei_weights": [
+   0.35,
+   0.25,
+   0.2,
+   0.2
+  ],
+  "spectral_mode": "lite",
+  "power_iterations": 1,
+  "cheap_gate_enabled": true,
+  "cheap_cosine_threshold": 0.998,
+  "cheap_norm_delta_threshold": 0.02,
+  "hysteresis_band": 0.05,
+  "ridge_alphas": [
+   0.0001,
+   0.001,
+   0.01,
+   0.03,
+   0.1,
+   0.3,
+   1.0,
+   10.0
+  ],
+  "val_every": 5,
+  "mlp_hidden": 512,
+  "mlp_steps": 400,
+  "mlp_max_tokens": 32768,
+  "mlp_lr": 0.001,
+  "depthweave_rank": 64,
+  "attn_query_chunk": 4096
+ },
+ "preset_config": {
+  "name": "paper",
+  "samples": {
+   "longbench": 40,
+   "squad": 800,
+   "mmlu": 800,
+   "gsm8k": 1319,
+   "humaneval": 20,
+   "sst2": 872
+  },
+  "idbench_eval_per_density": 6,
+  "max_context": 8192,
+  "main_budgets": [
+   0.1,
+   0.3,
+   0.5,
+   0.6,
+   0.7,
+   0.8,
+   0.9
+  ],
+  "transport_budgets": [
+   0.1,
+   0.3,
+   0.5,
+   0.7,
+   0.8,
+   0.9
+  ],
+  "selector_budgets": [
+   0.5,
+   0.7,
+   0.9
+  ],
+  "transfer_budgets": [
+   0.5,
+   0.7,
+   0.9
+  ],
+  "operating_points": {
+   "Conservative": 0.3,
+   "Balanced": 0.5,
+   "Aggressive": 0.7
+  },
+  "transport_tasks": [
+   "idbench",
+   "squad",
+   "longbench",
+   "mmlu"
+  ],
+  "selector_tasks": [
+   "idbench",
+   "squad",
+   "longbench",
+   "mmlu"
+  ],
+  "transfer_tasks": [
+   "idbench",
+   "squad",
+   "longbench",
+   "mmlu"
+  ],
+  "scaling_lengths": [
+   2048,
+   4096,
+   8192,
+   16384,
+   32768
+  ],
+  "scaling_samples": 3,
+  "scaling_budgets": [
+   0.5,
+   0.7,
+   0.9
+  ],
+  "timing_repeats": 5,
+  "calib_prompts": {
+   "natural": 48,
+   "idbench": 20,
+   "code": 24
+  },
+  "calib_max_tokens": 2048,
+  "latency_samples": 40
+ },
+ "experiments": [
+  "main"
+ ],
+ "argv": [
+  "run_benchmark.py",
+  "--model",
+  "Qwen/Qwen2.5-7B-Instruct",
+  "--preset",
+  "paper",
+  "--methods",
+  "DepthWeave",
+  "--tasks",
+  "longbench",
+  "--longbench-all",
+  "--budgets",
+  "0.3",
+  "0.5",
+  "0.7",
+  "0.9",
+  "--load-dense",
+  "results/Qwen2.5-7B-Instruct/dense_references.pt",
+  "--experiments",
+  "main",
+  "--output-dir",
+  "results"
+ ]
+}
