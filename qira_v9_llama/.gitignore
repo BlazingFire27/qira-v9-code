@@ -1,6 +1,8 @@
 # Results and checkpoints
 results/
 results*/
+!results_llama_all_metrics/
+!results_llama_all_metrics/**
 longbench_cache/
 *.pt
 *.bin
