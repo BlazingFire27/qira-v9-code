@@ -1,4 +1,4 @@
-﻿# Frozen but Not Forgotten: Closed-Form Cross-Layer K/V Transport for Intermediate-Layer Token Halting in LLM Prefill
+# Frozen but Not Forgotten: Closed-Form Cross-Layer K/V Transport for Intermediate-Layer Token Halting in LLM Prefill
 
 > **Anonymous Repository** accompanying a submission to the **ACL Rolling Review (ARR)**.
 
@@ -11,7 +11,7 @@ In transformer prefill, intermediate-layer token halting reduces redundant compu
 **QIRA** resolves this through **closed-form cross-layer K/V transport**:
 - **Zero backbone modification:** The underlying model weights remain frozen.
 - **Closed-form transport:** Keys and values of halted tokens are mapped to deeper layers via layer-specific Ridge regression transport matrices fitted offline on disjoint calibration sequences.
-- **Fast calibration:** Calibration finishes in 1â€“2 minutes on a single GPU.
+- **Fast calibration:** Calibration finishes in 1-2 minutes on a single GPU.
 - **Variants:**
   - **QIRA-L:** Learns a lightweight linear selector over ten decision-layer geometric cues.
   - **QIRA:** Uses a closed-form Quantum-Inspired Entropy of Information (QEI) spectral selector with the same ridge transport.
@@ -69,7 +69,7 @@ Check `results/<model>/selftest.json` (`"passed": true`) to confirm numerical pa
 
 ---
 
-> ### ðŸ“Œ Note on Raw Evaluation Traces (`main.jsonl`)
+> ### Note on Raw Evaluation Traces (`main.jsonl`)
 > Due to standard anonymous code repository hosting constraints (specifically the strict **100 MB per-file upload limit**), the raw per-token sample generation dumps (`results/<model>/main.jsonl`, which span **120 MB to 220 MB per model**) are excluded from this release.
 > 
 > **Everything required to inspect and verify the findings is included:**
@@ -136,18 +136,18 @@ All methods are implemented within the identical inference engine using the same
 
 ```text
 .
-â”œâ”€â”€ run_benchmark.py       # Unified CLI execution driver
-â”œâ”€â”€ qira/                  # Core library
-â”‚   â”œâ”€â”€ engine.py          # Prefill engine supporting dynamic halting and transported K/V
-â”‚   â”œâ”€â”€ transport.py       # Closed-form ridge transport (calibration and inference)
-â”‚   â”œâ”€â”€ selectors.py       # QIRA-L, QIRA, and baseline token selection policies
-â”‚   â”œâ”€â”€ calibration.py     # Disjoint calibration loader and closed-form solvers
-â”‚   â”œâ”€â”€ experiments.py     # Benchmark protocol definitions
-â”‚   â”œâ”€â”€ tasks.py           # Evaluation dataset adapters
-â”‚   â”œâ”€â”€ scoring.py         # Downstream evaluation metrics (Rouge-L, Exact Match, etc.)
-â”‚   â””â”€â”€ report.py          # Automated generation of tables, plots, and markdown summaries
-â”œâ”€â”€ requirements.txt       # Python dependencies
-â””â”€â”€ results/<model>/       # Experimental outputs (CSV tables, plots, selftest.json, summary reports)
+|-- run_benchmark.py       # Unified CLI execution driver
+|-- qira/                  # Core library
+|   |-- engine.py          # Prefill engine supporting dynamic halting and transported K/V
+|   |-- transport.py       # Closed-form ridge transport (calibration and inference)
+|   |-- selectors.py       # QIRA-L, QIRA, and baseline token selection policies
+|   |-- calibration.py     # Disjoint calibration loader and closed-form solvers
+|   |-- experiments.py     # Benchmark protocol definitions
+|   |-- tasks.py           # Evaluation dataset adapters
+|   |-- scoring.py         # Downstream evaluation metrics (Rouge-L, Exact Match, etc.)
+|   \-- report.py          # Automated generation of tables, plots, and markdown summaries
+|-- requirements.txt       # Python dependencies
+\-- results/<model>/       # Experimental outputs (CSV tables, plots, selftest.json, summary reports)
 ```
 
 ---
@@ -156,4 +156,3 @@ All methods are implemented within the identical inference engine using the same
 
 - Model weights and benchmark datasets are retrieved from their original upstream providers and are subject to their respective licenses (Qwen2.5: Apache-2.0; LLaMA-3.1: Llama 3.1 Community License; LongBench: MIT; SQuAD v1.1: CC BY-SA 4.0; MMLU: MIT; SST-2: Stanford Sentiment Treebank terms).
 - This repository distributes no proprietary weights or proprietary dataset splits.
-
